@@ -15,11 +15,12 @@ import java.util.Date;
 
 
 public class FileRead {
-	YearMonth yearMonth = YearMonth.now();
 	
-	public  ArrayList<Tesla> readData() throws IOException {
+	
+	public  ArrayList<Tesla> readData(Integer monthlySalesFigure) throws IOException {
 		BufferedReader reader = null;
 		ArrayList<Tesla> teslas =new ArrayList<>();
+		
 		
 		try {
 			reader = new BufferedReader(new FileReader("model3data.txt"));
@@ -28,8 +29,14 @@ public class FileRead {
 			
 			while ((readLine = reader.readLine()) != null) {
 				String[] line = readLine.split(",");
-				dateParsing(line);
-				Integer monthlySalesFigure = Integer.parseInt(line[1]);
+				
+				String[] splitDate = line[0].split("-");
+				String month = splitDate[0];
+				String year = splitDate[1];
+				String yearMonthDate = year + "-" + month;
+				DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yy-MMM");
+				YearMonth yearMonth = YearMonth.parse(yearMonthDate, inputFormat);
+				monthlySalesFigure = Integer.parseInt(line[1]);
 				Tesla tesla = new Tesla(monthlySalesFigure, yearMonth);
 				teslas.add(tesla);
 				
@@ -48,14 +55,6 @@ public class FileRead {
 		return teslas;
 	}
 
-	private YearMonth dateParsing(String[] line) {
-		String[] splitDate = line[0].split("-");
-		String month = splitDate[0];
-		String year = splitDate[1];
-		String yearMonthDate = year + "-" + month;
-		DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yy-MMM");
-		yearMonth = YearMonth.parse(yearMonthDate, inputFormat);
-		return yearMonth;
-	}
+	
 	
 }
