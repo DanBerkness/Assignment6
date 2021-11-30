@@ -36,7 +36,7 @@ public class Tesla {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(date, monthlySales);
+		return Objects.hash(monthlySales);
 	}
 
 	@Override
@@ -48,7 +48,13 @@ public class Tesla {
 		if (getClass() != obj.getClass())
 			return false;
 		Tesla other = (Tesla) obj;
-		return Objects.equals(date, other.date) && Objects.equals(monthlySales, other.monthlySales);
+		return Objects.equals(monthlySales, other.monthlySales);
 	}
+
+	
+
+	
+
+	
 	
 }
