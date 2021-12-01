@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -27,7 +30,16 @@ public class Main {
 		
 		model3Sales = fileRead.readData(monthlySalesFigure);
 		
-				
+		List<Tesla> has = model3Sales.stream()
+										 .toList();
+		Map<YearMonth, Integer> tMap = model3Sales.stream()
+												  .collect(Collectors.toMap(m -> m.getDate(), m -> m.getMonthlySales()));
+	
+		java.util.Set<YearMonth> keySet = tMap.keySet();
+		System.out.println(keySet);
+		java.util.Set<Integer> valueSet = tMap.stream().flatMap(c -> c.getMonthlySales()).collect(Collectors.toSet());
+		
+										 
 		Integer firstYearTotal = model3Sales.stream()
 											.filter(car -> car.getDate().isBefore(secondYearDate))
 											.map(car -> car.getMonthlySales())
@@ -47,11 +59,6 @@ public class Main {
 											.sum();		
 	
 		
-//		HashSet<Tesla> bestMonth = model3Sales.stream()
-//											  .forEach(car -> Collectors.toSet());
-		 HashMap<YearMonth, Integer> maxSale = model3Sales.stream()
-				 										  .flatMapToInt(car -> car.getMonthlySales().MAX_VALUE)
-				 										  .)
-				 					  
+
 		 }
 }
