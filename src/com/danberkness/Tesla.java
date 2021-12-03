@@ -7,7 +7,10 @@ import java.util.Objects;
 public class Tesla {
 	private Integer monthlySales;
 	private YearMonth date;
+
 	
+	
+
 	public Tesla(Integer monthlySales, YearMonth date) {
 		this.monthlySales = monthlySales;
 		this.date = date;
@@ -30,13 +33,8 @@ public class Tesla {
 	}
 
 	@Override
-	public String toString() {
-		return "Tesla [monthlySales=" + monthlySales + ", date=" + date + "]";
-	}
-
-	@Override
 	public int hashCode() {
-		return Objects.hash(date);
+		return Objects.hash(monthlySales);
 	}
 
 	@Override
@@ -48,8 +46,16 @@ public class Tesla {
 		if (getClass() != obj.getClass())
 			return false;
 		Tesla other = (Tesla) obj;
-		return Objects.equals(date, other.date);
+		return Objects.equals(monthlySales, other.monthlySales);
 	}
+
+	@Override
+	public String toString() {
+		return "Tesla [monthlySales=" + monthlySales + ", date=" + date + "]" ;
+	}
+
+	
+	
 
 	
 

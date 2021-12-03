@@ -17,13 +17,14 @@ import java.util.Date;
 public class FileRead {
 	
 	
-	public  ArrayList<Tesla> readData(Integer monthlySalesFigure) throws IOException {
+	public  ArrayList<Tesla> readData(String filePath) throws IOException {
 		BufferedReader reader = null;
 		ArrayList<Tesla> teslas =new ArrayList<>();
+		Integer monthlySalesFigure = 0;
 		
 		
 		try {
-			reader = new BufferedReader(new FileReader("model3data.txt"));
+			reader = new BufferedReader(new FileReader(filePath));
 			String burnLine = reader.readLine();
 			String readLine ="";
 			
