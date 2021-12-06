@@ -4,14 +4,14 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Tesla {
+public class SalesData {
 	private Integer monthlySales;
 	private YearMonth date;
 
 	
 	
 
-	public Tesla(Integer monthlySales, YearMonth date) {
+	public SalesData(Integer monthlySales, YearMonth date) {
 		this.monthlySales = monthlySales;
 		this.date = date;
 	}
@@ -45,13 +45,13 @@ public class Tesla {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tesla other = (Tesla) obj;
+		SalesData other = (SalesData) obj;
 		return Objects.equals(monthlySales, other.monthlySales);
 	}
 
 	@Override
 	public String toString() {
-		return "Tesla [monthlySales=" + monthlySales + ", date=" + date + "]" ;
+		return "VehicleSalesData [monthlySales=" + monthlySales + ", date=" + date + "]" ;
 	}
 
 	

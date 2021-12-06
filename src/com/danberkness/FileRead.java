@@ -17,9 +17,9 @@ import java.util.Date;
 public class FileRead {
 	
 	
-	public  ArrayList<Tesla> readData(String filePath) throws IOException {
+	public  ArrayList<SalesData> readData(String filePath) throws IOException {
 		BufferedReader reader = null;
-		ArrayList<Tesla> teslas =new ArrayList<>();
+		ArrayList<SalesData> teslas =new ArrayList<>();
 		Integer monthlySalesFigure = 0;
 		
 		
@@ -38,7 +38,7 @@ public class FileRead {
 				DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yy-MMM");
 				YearMonth yearMonth = YearMonth.parse(yearMonthDate, inputFormat);
 				monthlySalesFigure = Integer.parseInt(line[1]);
-				Tesla tesla = new Tesla(monthlySalesFigure, yearMonth);
+				SalesData tesla = new SalesData(monthlySalesFigure, yearMonth);
 				teslas.add(tesla);
 				
 			}

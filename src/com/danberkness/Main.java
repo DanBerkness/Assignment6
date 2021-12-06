@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		FileRead fileRead = new FileRead();
-		ArrayList<Tesla> model3Sales =new ArrayList<>();
-		ArrayList<Tesla> modelSSales =new ArrayList<>();
-		ArrayList<Tesla> modelXSales =new ArrayList<>();
+		ArrayList<SalesData> model3Sales =new ArrayList<>();
+		ArrayList<SalesData> modelSSales =new ArrayList<>();
+		ArrayList<SalesData> modelXSales =new ArrayList<>();
 		
 		YearMonth firstYearDate = YearMonth.of(2017, 12);
 		YearMonth secondYearDate = YearMonth.of(2018, 1);
@@ -31,18 +31,23 @@ public class Main {
 		modelSSales = fileRead.readData("modelsdata.txt");
 		modelXSales = fileRead.readData("modelxdata.txt");
 		
-		Map<Integer, List<Tesla>> allDatesInFile = model3Sales.stream()
-															  .collect(Collectors.groupingBy(d -> d.getDate().getYear()));
-		System.out.println(allDatesInFile);
-		Set<Entry<Integer, List<Tesla>>> entrySet = allDatesInFile.entrySet();
+		Map<Integer, List<SalesData>> allDatesInFile = model3Sales.stream()  
+															  	  .collect(Collectors.groupingBy(d -> d.getDate().getYear()));
+		
+		Set<Entry<Integer, List<SalesData>>> entrySet = allDatesInFile.entrySet();
+		
+		entrySet.stream()
+				.filter(e -> e.getValue().addAll(entrySet))
+				.collect(Collectors.toSet());
+		System.out.println(entrySet);
 //		I can use this Entry Set to stream 
 
 		
-		Set<List<Tesla>> years = entrySet.stream()
-										 
-										 .map(e -> e.getValue())
-										 .collect(Collectors.toSet());
-		System.out.println(years);
+//		Set<List<Tesla>> years = entrySet.stream()
+//										 
+//										 .map(e -> e.getValue())
+//										 .collect(Collectors.toSet());
+//		System.out.println(years);
 		
 		
 //		Set<Integer> dateSet = entrySet.stream()
