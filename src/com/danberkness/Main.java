@@ -29,20 +29,26 @@ public class Main {
 		String xReport = "X";
 		
 		
-		modelSSales = fileRead.readData("modelsdata.txt");
-		modelXSales = fileRead.readData("modelxdata.txt");
-		
-		
 		ArrayList<SalesData> modelSales = fileRead.readData("model3data.txt");
 		String model3Report = populateSales.populateModelData(modelSales, threeReport);
 		System.out.println(model3Report);
+		System.out.println("");
+		String model3BestMonth = populateSales.bestAndWorstMonth(modelSales, threeReport);
+		System.out.println(model3BestMonth);
 		
 		modelSales = fileRead.readData("modelsdata.txt");
 		String modelSReport = populateSales.populateModelData(modelSales, sReport);
 		System.out.println(modelSReport);
-			
+		System.out.println("");
+		String modelSBestMonth = populateSales.bestAndWorstMonth(modelSales, sReport);
+		System.out.println(modelSBestMonth);
+		
 		modelSales = fileRead.readData("modelxdata.txt");
 		String modelXReport = populateSales.populateModelData(modelSales, xReport);
 		System.out.println(modelXReport);
+		System.out.println("");
+		String modelXBestMonth = populateSales.bestAndWorstMonth(modelSales, xReport);
+		System.out.println(modelXBestMonth);
+		
 	}
 }

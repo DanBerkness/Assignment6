@@ -3,6 +3,7 @@ package com.danberkness;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PopulateSales {
@@ -15,9 +16,20 @@ public class PopulateSales {
 		System.out.println("Model " + report + " Yearly Sales Report");
 		System.out.println("---------------------------");
 
-		String bestMonth = salesPerYear.entrySet().parallelStream()
-												  .map(date -> date.getKey() + " -> " + date.getValue().stream().collect(Collectors.summingInt(SalesData::getMonthlySales)))
-												  .collect(Collectors.joining("\n"));
-		return bestMonth;
+		String yearlyTotals = salesPerYear.entrySet().parallelStream()
+													 .map(date -> date.getKey() + " -> " + date.getValue().stream().collect(Collectors.summingInt(SalesData::getMonthlySales)))
+													 .collect(Collectors.joining("\n"));
+		return yearlyTotals;
+	}
+	public String bestAndWorstMonth(ArrayList<SalesData> modelSales, String report) {
+		String bestSalesMonth = "";
+		String worstSalesMonth = "";
+		
+		Optional<String> sd = modelSales.stream()
+				  .collect(Collectors.maxBy(Integer::compareTo).toString());
+		
+		return "The best month for Model " + report + " was: " + bestSalesMonth + "\n" + "The worst month for Model " + report + " was: " + worstSalesMonth + "\n";
+		
+		
 	}
 }

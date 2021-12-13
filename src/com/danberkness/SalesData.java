@@ -4,7 +4,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class SalesData {
+public class SalesData implements Comparable<SalesData> {
 	private Integer monthlySales;
 	private YearMonth date;
 
@@ -54,17 +54,16 @@ public class SalesData {
 		return "VehicleSalesData [monthlySales=" + monthlySales + ", date=" + date + "]" ;
 	}
 
-	
-	
+	@Override
+	public int compareTo(SalesData that) {
+		if (this.monthlySales > that.monthlySales) {
+			return 1;
+		} else if (this.monthlySales.equals(that.monthlySales)) {
+			return 0;
+		} else {
+			return -1;
+		}
 
-	
-
-	
-
-	
-
-	
-
-	
+	}
 	
 }
