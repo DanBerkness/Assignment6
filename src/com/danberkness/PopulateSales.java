@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class PopulateSales {
@@ -22,11 +23,21 @@ public class PopulateSales {
 		return yearlyTotals;
 	}
 	public String bestAndWorstMonth(ArrayList<SalesData> modelSales, String report) {
-		String bestSalesMonth = "";
-		String worstSalesMonth = "";
 		
-		Optional<String> sd = modelSales.stream()
-				  .collect(Collectors.maxBy(Integer::compareTo).toString());
+		
+		 List<SalesData> sd = modelSales.stream()
+				 						.collect(Collectors.toList());
+		 
+		List<Integer> salesValues = sd.stream()
+									  .map(date -> date.getMonthlySales().intValue())
+									  .collect(Collectors.toList());
+	
+		 Integer bestSalesMonth = salesValues.stream()
+				 							 .max(Integer::compare).get();
+		  
+	   Integer worstSalesMonth = salesValues.stream()
+			   								.min(Integer::compare).get();
+	
 		
 		return "The best month for Model " + report + " was: " + bestSalesMonth + "\n" + "The worst month for Model " + report + " was: " + worstSalesMonth + "\n";
 		
