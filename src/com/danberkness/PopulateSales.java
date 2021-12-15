@@ -11,7 +11,6 @@ public class PopulateSales {
 	
 	public String populateModelData(ArrayList<SalesData> modelSales, String report) {
 		Map<Integer, List<SalesData>> salesPerYear = modelSales.stream()
-															   .distinct()
 															   .collect(Collectors.groupingBy(t -> t.getDate().getYear()));
 		
 		System.out.println("Model " + report + " Yearly Sales Report");
