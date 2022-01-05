@@ -21,12 +21,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		FileRead fileRead = new FileRead();
 		PopulateSales populateSales = new PopulateSales();
-		ArrayList<SalesData> model3Sales =new ArrayList<>();
-		ArrayList<SalesData> modelSSales =new ArrayList<>();
-		ArrayList<SalesData> modelXSales =new ArrayList<>();
-		String threeReport = "3";
-		String sReport = "S";
-		String xReport = "X";
+		String threeReport = "3", sReport = "S", xReport = "X";
 		
 		
 		ArrayList<SalesData> modelSales = fileRead.readData("model3data.txt");

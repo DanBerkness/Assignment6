@@ -1,11 +1,18 @@
+//  Modify line 3 to your package location. IE: com.assignment6 or whatever you called it.
+
 package com.danberkness;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import com.sun.jdi.Method;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +22,10 @@ import java.util.Map;
 public class Test {
 
 	public static void main(String[] args) {
+		int evalNum = 5668;
+		isPrimeNumber();
+
+		checkStuff();
 
 		System.out.println("Using Java 7: ");
 
@@ -56,7 +67,7 @@ public class Test {
 			System.out.println(random.nextInt());
 		}
 
-		System.out.println("Using Java 8: ");
+		System.out.println("Using Java 8: \n \n \n");
 		System.out.println("List: " + strings);
 
 		count = strings.stream().filter(string -> string.isEmpty()).count();
@@ -191,5 +202,59 @@ public class Test {
 
 	private static int getAverage(List<Integer> numbers) {
 		return getSum(numbers) / numbers.size();
+	}
+
+	private static void checkStuff() {
+		List<String> list = new ArrayList<>();
+		list.add("Hi");
+		list.add("How");
+		list.add("are");
+		list.add("you");
+		list.add("today?");
+		System.out.println(list);
+		List<String> uppers = list.stream()
+								  .map(m -> m.toUpperCase())
+								  .collect(Collectors.toList());
+
+		System.out.println(uppers);
+		System.out.println("Counts the number of elements in the stream.\n");
+		long counterStream = list.stream().count();
+		System.out.println(counterStream);
+		System.out.println("Stream can be a terminal op, although I don't know when it would be useful.\n");
+		Stream<String> streamer = list.stream();
+		System.out.println(streamer);
+		System.out.println(".anyMatch() will test an infinite stream for matches containing a certain char or num. \n By first filtering out NOT isEmpty, and then pushing to lower case (if desired), and then using .contains with the desired content.\n" );
+		boolean isMatch = list.stream()
+							  .filter(t -> !t.isEmpty())
+							  .map(String::toLowerCase)
+							  .anyMatch(text -> text.contains("h"));
+		System.out.println(isMatch);
+		System.out.println("Collections.addAll takes a collection and requires something to be added to the collection, possibly multiple items.\n");
+		Collections.addAll(list, "Good", "Times");
+		System.out.println(list);
+//		You can totally instantiate multiple variables on one line by separating their values by commas!!!!!!!!!
+		int num1, num2,result;
+		num1 = 26;
+		num2 = 15;
+		System.out.println("num1=26; num2=15");
+		result = num1%num2;
+		System.out.println(result);
+		
+	}
+	public static void isPrimeNumber() {
+		
+		int n = 3;
+		int c = 0;
+		for(int i=1; i<=n; i++) {
+			if(n%i==0)
+				c++;
+			
+		}
+		if(c==2) {
+			System.out.println(n+" is a prime number");			
+		}
+		else {
+			System.out.println(n+" is not a prime number");			
+		}
 	}
 }
