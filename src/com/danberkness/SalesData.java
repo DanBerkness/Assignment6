@@ -11,9 +11,10 @@ public class SalesData implements Comparable<SalesData> {
 	
 	
 
-	public SalesData(Integer monthlySales, YearMonth date) {
-		this.monthlySales = monthlySales;
-		this.date = date;
+	public SalesData(String monthlySales, String date) {
+		this.monthlySales = Integer.parseInt(monthlySales);
+		this.date = YearMonth.parse(date, DateTimeFormatter.ofPattern("MMM-yy"));
+		
 	}
 
 	public Integer getMonthlySales() {

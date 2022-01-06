@@ -19,31 +19,19 @@ import java.util.stream.Collectors;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
+		
 		FileRead fileRead = new FileRead();
 		PopulateSales populateSales = new PopulateSales();
-		String threeReport = "3", sReport = "S", xReport = "X";
-		
 		
 		ArrayList<SalesData> modelSales = fileRead.readData("model3data.txt");
-		String model3Report = populateSales.populateModelData(modelSales, threeReport);
-		System.out.println(model3Report);
-		System.out.println("");
-		String model3BestMonth = populateSales.bestAndWorstMonth(modelSales, threeReport);
-		System.out.println(model3BestMonth);
+		populateSales.populateModelData(modelSales, "3");
+		System.out.println();
 		
 		modelSales = fileRead.readData("modelsdata.txt");
-		String modelSReport = populateSales.populateModelData(modelSales, sReport);
-		System.out.println(modelSReport);
-		System.out.println("");
-		String modelSBestMonth = populateSales.bestAndWorstMonth(modelSales, sReport);
-		System.out.println(modelSBestMonth);
-		
+		populateSales.populateModelData(modelSales, "S");
+		System.out.println();
+
 		modelSales = fileRead.readData("modelxdata.txt");
-		String modelXReport = populateSales.populateModelData(modelSales, xReport);
-		System.out.println(modelXReport);
-		System.out.println("");
-		String modelXBestMonth = populateSales.bestAndWorstMonth(modelSales, xReport);
-		System.out.println(modelXBestMonth);
-		
+		populateSales.populateModelData(modelSales, "X");
 	}
 }
